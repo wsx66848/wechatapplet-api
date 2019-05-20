@@ -65,7 +65,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Shanghai',
 
     /*
     |--------------------------------------------------------------------------
@@ -78,7 +78,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'zh',
 
     /*
     |--------------------------------------------------------------------------
@@ -107,11 +107,6 @@ return [
     'key' => env('APP_KEY'),
 
     'cipher' => 'AES-256-CBC',
-
-    /* applet id and secret */
-
-    'applet_id' => env('APPLET_APP_ID'),
-    'applet_secret' => env('APPLET_APP_SECRET'),
 
     /*
     |--------------------------------------------------------------------------
@@ -181,7 +176,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        App\Providers\SessionServiceProvider::class,
+        App\Providers\NetConnectionServiceProvider::class,
+        App\Providers\ResponseServiceProvider::class,
     ],
 
     /*

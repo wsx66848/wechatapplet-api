@@ -39,6 +39,8 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapWebRoutes();
 
+        $this->mapOauthRoutes();
+
         //
     }
 
@@ -67,7 +69,13 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::prefix('api')
              ->middleware('api')
-             ->namespace($this->namespace)
+             ->namespace($this->namespace . '\Api')
              ->group(base_path('routes/api.php'));
+    }
+
+    protected function mapOauthRoutes() {
+        Route::prefix('oauth')
+             ->namespace($this->namespace . '\Oauth')
+             ->group(base_path('routes/oauth.php'));
     }
 }

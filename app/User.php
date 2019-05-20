@@ -24,6 +24,24 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token','session_key',
     ];
+
+    public $timestamps = false;
+
+    public function access_token() {
+        return $this->hasOne('App\Models\Token\AccessToken');
+    }
+
+    public function alerts() {
+        return $this->hasMany('App\Models\Alert');
+    }
+
+    public function collections() {
+        return $this->hasMany('App\Models\Collection');
+    }
+
+    public function subscriptions() {
+        return $this->hasMany('App\Models\Subscription');
+    }
 }

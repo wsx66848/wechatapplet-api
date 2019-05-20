@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserTokenTable extends Migration
+class CreateMapTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateUserTokenTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_token', function (Blueprint $table) {
-            $table->string('token', 40);
-            $table->boolean('expired');
-            $table->string('open_id');
-            $table->string('session_key');
+        Schema::create('map', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('school_id')->index();
+            $table->string('imageUrl');
+            $table->timestamps();
         });
     }
 
@@ -28,6 +28,6 @@ class CreateUserTokenTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_token');
+        Schema::dropIfExists('map');
     }
 }

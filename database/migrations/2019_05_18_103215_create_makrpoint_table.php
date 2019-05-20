@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersTable extends Migration
+class CreateMakrpointTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('markpoint', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('open_id');
-            $table->string('session_key');
-            $table->string('union_id');
+            $table->integer('map_id')->index();
+            $table->string('name');
+            $table->float('latitude', 5, 2);
+            $table->float('longitude', 5, 2);
+            $table->timestamps();
         });
     }
 
@@ -28,6 +30,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('markpoint');
     }
 }
