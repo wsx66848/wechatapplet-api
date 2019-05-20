@@ -59,7 +59,3 @@ Route::apiResource('alert', 'AlertController', ['except' => [
     'update', 'destroy',
 ]]);
 
-//map
-Route::apiResource('map', 'MapController', ['only' => [
-    'index', 'show'
-]]);
