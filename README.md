@@ -114,3 +114,8 @@ map为地图信息,携带了它所包含的markpoint,markpoint中携带了它所
 
 反馈信息
 * post /api/feedback 添加一条反馈信息 必选参数为
+
+### 8.user
+
+用户信息
+* get /api/user 获取用户信息
