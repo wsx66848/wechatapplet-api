@@ -6,6 +6,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Database\Eloquent\Model;
 
 class Controller extends BaseController
 {
@@ -15,12 +16,12 @@ class Controller extends BaseController
         if ($data instanceof Collection) {
             $data = $data->map(function ($d) {
                 if ($d instanceof Model) {
-                    return $d->wrap();
+                    return $d->toArray();
                 }
                 return $d;
             })->all();
         } else if ($data instanceof Model) {
-            $data = $data->wrap();
+            $data = $data->toArray();
         } else if (is_array($data)) {
             unset ($data['success']);
         }

@@ -71,35 +71,36 @@ map为地图信息,携带了它所包含的markpoint,markpoint中携带了它所
 地图上的标记点信息
 
 * get /api/markpoint/cards/{markpoint_id} 获取指定markpoint下的所有card
-* post /api/markpoint/subscription/{markpoint_id} 订阅指定的markpoint
+* post /api/markpoint/subscription/add/{markpoint_id} 订阅指定的markpoint
+* post /api/markpoint/subscription/delete/{markpoint_id} 取消订阅指定的markpoint
 
 ### 3.card
 
 卡片信息
 * get /api/card 获取所有的card
 * get /api/card/{card_id} 获取指定的card
-* post /api/card/collection/{card_id} 收藏指定的card
+* post /api/card/collection/add/{card_id} 收藏指定的card
+* post /api/card/collection/delete/{card_id} 取消收藏指定的card
 
 ### 4.article
 
 文章信息
 * get /api/article 获取所有的article
 * get /api/article/{article_id} 获取指定的article
-* post /api/article/collection/{article_id} 收藏指定的article
+* post /api/article/collection/add/{article_id} 收藏指定的article
+* post /api/article/collection/delete/{article_id} 取消收藏指定的article
 
 ### 5.collection
 
 收藏信息
 * get /api/collection 获取该用户所有的collection
 * get /api/collection/{collection_id} 获取该用户指定的collection
-* post /api/collection/delete/{collection_id} 删除指定的collection
 
 ### 5.subscription
 
 订阅信息
 * get /api/subscription 获取该用户所有的subscription
 * get /api/subscription/{subscription_id} 获取该用户指定的subscription
-* post /api/subscription/delete/{subscription_id} 删除指定的subscription
 
 ### 6.alert
 

@@ -88,15 +88,4 @@ class CollectionController extends Controller
         //
     }
 
-    public function deleteCollection(Request $request, Collection $collection) {
-        $user = $request->user();
-        if ($collection->user->id != $user->id) {
-            return response()->json(['error' => 'unauthorized'], 403);
-        }
-        return Response::apiWithTransaction([], [], function($d) use($collection) {
-            $collection->delete();
-            return true;
-        });
-
-    }
 }

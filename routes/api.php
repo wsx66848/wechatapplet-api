@@ -26,28 +26,29 @@ Route::apiResource('map', 'MapController', ['only' => [
 ]]);
 
 //markpoint
-Route::post('/markpoint/subscription/{markpoint}', 'MarkPointController@markpointSubscription');
+Route::post('/markpoint/subscription/add/{markpoint}', 'MarkPointController@addSubscription');
+Route::post('/markpoint/subscription/delete/{markpoint}', 'MarkPointController@deleteSubscription');
 Route::get('/markpoint/cards/{markpoint}', 'MarkPointController@getCards');
 //card
-Route::post('/card/collection/{card}', 'CardController@cardCollection');
+Route::post('/card/collection/add/{card}', 'CardController@addCollection');
+Route::post('/card/collection/delete/{card}', 'CardController@deleteCollection');
 Route::apiResource('card', 'CardController', ['only' => [
     'index', 'show'
 ]]);
 
 //article
-Route::post('/article/collection/{article}', 'ArticleController@articleCollection');
+Route::post('/article/collection/add/{article}', 'ArticleController@addCollection');
+Route::post('/article/collection/delete/{article}', 'ArticleController@deleteCollection');
 Route::apiResource('article', 'ArticleController', ['only' => [
     'index', 'show'
 ]]);
 
 //collection
-Route::post('/collection/delete/{collection}', 'CollectionController@deleteCollection');
 Route::apiResource('collection', 'CollectionController', ['only' => [
     'index', 'show'
 ]]);
 
 //subscription
-Route::post('/subscription/delete/{subscription}', 'SubscriptionController@deleteSubscription');
 Route::apiResource('subscription', 'SubscriptionController', ['only' => [
     'index', 'show'
 ]]);

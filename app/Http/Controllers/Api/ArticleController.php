@@ -88,11 +88,24 @@ class ArticleController extends Controller
         //
     }
 
-    public function articleCollection(Request $request, Article $article) {
+
+    public function addCollection(Request $request, Article $article) {
         $user = $request->user();
-        return Response::apiWithTransaction([], [], function($d) use($user, $article) {
-            $collection = Collection::collectionModel($article, $article->title, $user);
-            return true;
-        });
+        if(!$article->getUserCollection($user)) {
+            return Response::apiWithTransaction([], [], function($d) use($user, $article) {
+                $collection = Collection::collectionModel($article, $article->title, $user);
+                return true;
+            });
+        }
+        return $this->success();
+
+    }
+
+    public function deleteCollection(Request $request, Article $article) {
+        $user = $request->user();
+        if($collection = $article->getUserCollection($user)) {
+            $collection->delete();
+        }
+        return $this->success();
     }
 }

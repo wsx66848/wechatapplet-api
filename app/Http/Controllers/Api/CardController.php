@@ -88,11 +88,23 @@ class CardController extends Controller
         //
     }
 
-    public function cardCollection(Request $request, Card $card) {
+    public function addCollection(Request $request, Card $card) {
         $user = $request->user();
-        return Response::apiWithTransaction([], [], function($d) use($user, $card) {
-            $collection = Collection::collectionModel($card, $card->title, $user);
-            return true;
-        });
+        if(!$card->getUserCollection($user)) {
+            return Response::apiWithTransaction([], [], function($d) use($user, $card) {
+                $collection = Collection::collectionModel($card, $card->title, $user);
+                return true;
+            });
+        }
+        return $this->success();
+
+    }
+
+    public function deleteCollection(Request $request, Card $card) {
+        $user = $request->user();
+        if($collection = $card->getUserCollection($user)) {
+            $collection->delete();
+        }
+        return $this->success();
     }
 }
