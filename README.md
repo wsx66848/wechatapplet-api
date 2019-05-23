@@ -28,7 +28,7 @@
 
 ### 2.api_token刷新
 
-`请求地址` /oauth/login
+`请求地址` /oauth/refresh-token
 
 `请求方式` post 
 
