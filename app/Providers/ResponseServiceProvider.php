@@ -36,22 +36,19 @@ class ResponseServiceProvider extends ServiceProvider
             if ($errors) {
                 $return = [
                     'success' => false,
-                    'errorCode' => 10001,
-                    'data' => $errors,
+                    'errors' => $errors,
                 ];
             } else if ($handler) {
                 $result = $handler($data);
                 if ($result === false) {
                     $return = [
                         'success' => false,
-                        'errorCode' => 10002,
-                        'message' => '操作失败'
+                        'errors' => '操作失败'
                     ];
                 } else if ($result instanceof \Illuminate\Support\MessageBag) {
                     $return = [
                         'success' => false,
-                        'errorCode' => 10002,
-                        'message' => $result->toArray()
+                        'errors' => $result->toArray()
                     ];
                 } else if (is_array($result)) {
                     if (isset($result['success'])) {
@@ -64,8 +61,7 @@ class ResponseServiceProvider extends ServiceProvider
                             'success' => $success ? true : false,
                         ];
                         if(!$success) {
-                            $return['errorCode'] = 10002;
-                            $return['message'] = $result;
+                            $return['errors'] = $result;
                         } else {
                             $return['data'] = $result;
                         }

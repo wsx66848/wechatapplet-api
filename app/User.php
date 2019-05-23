@@ -44,4 +44,20 @@ class User extends Authenticatable
     public function subscriptions() {
         return $this->hasMany('App\Models\Subscription');
     }
+
+    public function hasValidToken() {
+        if($token = $this->access_token) {
+            if(!$token->isExpired()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function flushTokens() {
+        if($token = $this->access_token) {
+            $token->delete();
+        } 
+    }
+
 }

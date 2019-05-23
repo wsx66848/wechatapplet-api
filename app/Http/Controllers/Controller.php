@@ -32,12 +32,6 @@ class Controller extends BaseController
     }
 
     public function error($mixed = '操作失败') {
-        if (is_string($mixed)) {
-            return [
-                'success' => false,
-                'message' => $mixed
-            ];
-        }
         return [
             'success' => false,
             'errors' => $mixed

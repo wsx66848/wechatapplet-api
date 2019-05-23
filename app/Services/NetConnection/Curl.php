@@ -68,10 +68,10 @@ class Curl implements HttpInterface {
             CURLOPT_TIMEOUT => 60,
         ];
         $options = $this->options + $default_options;
-        curl_setopt_array($options);
-        $response = curl_exec($url);
+        curl_setopt_array($curl, $options);
+        $response = curl_exec($curl);
         curl_close($curl);
-        return $response;
+        return json_decode($response, true);
 
     }
 

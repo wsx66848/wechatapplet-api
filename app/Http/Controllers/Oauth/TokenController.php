@@ -7,6 +7,8 @@ use Response;
 use App\Models\Token\RefreshToken;
 use App\Models\Token\AccessToken;
 use App\Http\Controllers\Controller;
+use App\Exceptions\TokenException;
+use App\Models\Token\BaseToken;
 
 class TokenController extends Controller
 {
@@ -20,19 +22,19 @@ class TokenController extends Controller
             'refresh_token' => function($v, $d) {
                 $refresh_token = RefreshToken::find($v);
                 if(!$refresh_token) {
-                    return 'refresh_token is not valid';
+                    throw new TokenException(BaseToken::getErrorMessage(BaseToken::REFRESHTOKEN_INVALID), BaseToken::REFRESHTOKEN_INVALID);
                 }
                 if($refresh_token->isExpired()) {
-                    return 'refresh_token is expired';
+                    throw new TokenException(BaseToken::getErrorMessage(BaseToken::REFRESHTOKEN_EXPIRED), BaseToken::REFRESHTOKEN_EXPIRED);
                 }
                 $access_token = $refresh_token->access_token;
                 if($access_token->api_token != $d['api_token']) {
-                    return 'access_token is not valid';
+                    throw new TokenException(BaseToken::getErrorMessage(BaseToken::APITOKEN_INVALID), BaseToken::APITOKEN_INVALID);
                 }
                 $user = $access_token->user;
                 $open_id = $user->open_id;
                 if($open_id != $d['open_id']) {
-                    return 'open_id is not valid';
+                    throw new TokenException(BaseToken::getErrorMessage(BaseToken::OPENID_INVALID), BaseToken::OPENID_INVALID);
                 }
             },
         ], function($d) {
@@ -68,9 +70,9 @@ class TokenController extends Controller
             }
             return $this->success([
                 'open_id' => $user->open_id,
-                'api_token' => $access_token->api_token,
+                'api_token' => $access_token->getKey(),
                 'expired_in' => $access_token->getExpiredTime(),
-                'refresh_token' => $refresh_token->refresh_token
+                'refresh_token' => $refresh_token->getKey()
             ]);
         });
     }

@@ -33,7 +33,16 @@ class MarkPointController extends Controller
 
     }
 
-    public function getCards(Request $request, MarkPoint $markpoint) {
-        return $this->success($markpoint->cards);
+    public function index()
+    {
+        //
+        return $this->success(MarkPoint::with('cards')->get());
+    }
+
+    public function show(MarkPoint $markpoint)
+    {
+        //
+        $markpoint->cards = $markpoint->cards()->get();
+        return $this->success($markpoint);
     }
 }

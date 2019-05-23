@@ -6,6 +6,7 @@ use App\Models\Subscription;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Response;
+use App\Exceptions\ModelException;
 
 class SubscriptionController extends Controller
 {
@@ -91,7 +92,7 @@ class SubscriptionController extends Controller
     public function deleteSubscription(Request $request, Subscription $subscription) {
         $user = $request->user();
         if ($subscription->user->id != $user->id) {
-            return response()->json(['error' => 'unauthorized'], 403);
+            throw new ModelException('no authorization', 403);
         }
         return Response::apiWithTransaction([], [], function($d) use($subscription) {
             $subscription->delete();

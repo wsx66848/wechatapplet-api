@@ -6,6 +6,7 @@ use App\Models\Alert;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Response;
+use App\Exceptions\ModelException;
 
 class AlertController extends Controller
 {
@@ -66,7 +67,7 @@ class AlertController extends Controller
         //
         $user = $request->user();
         if ($alert->user->id != $user->id) {
-            return response()->json(['error' => 'unauthorized'], 403);
+            throw new ModelException('no authorization', 403);
         }
         return $this->success($alert);
         
@@ -75,7 +76,7 @@ class AlertController extends Controller
     public function editAlert(Request $request, Alert $alert) {
         $user = $request->user();
         if ($alert->user->id != $user->id) {
-            return response()->json(['error' => 'unauthorized'], 403);
+            throw new ModelException('no authorization', 403);
         }
         return Response::apiWithTransaction([
             'content' => 'required'
@@ -89,7 +90,7 @@ class AlertController extends Controller
     public function deleteAlert(Request $request, Alert $alert) {
         $user = $request->user();
         if ($alert->user->id != $user->id) {
-            return response()->json(['error' => 'unauthorized'], 403);
+            throw new ModelException('no authorization', 403);
         }
         return Response::apiWithTransaction([
         ], [], function($d) use($alert) {

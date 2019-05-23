@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Auth;
 
-class MarkPoint extends Model
+class MarkPoint extends BaseModel
 {
     //
     protected $table = 'markpoint';

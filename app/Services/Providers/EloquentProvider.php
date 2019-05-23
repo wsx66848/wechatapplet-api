@@ -5,6 +5,8 @@ namespace App\Services\Providers;
 use Illuminate\Support\Str;
 use Illuminate\Auth\EloquentUserProvider as Base;
 use Illuminate\Contracts\Hashing\Hasher as HasherContract;
+use App\Exceptions\TokenException;
+use App\Models\Token\BaseToken;
 
 class EloquentUserProvider extends Base {
 
@@ -28,8 +30,12 @@ class EloquentUserProvider extends Base {
         }
 
         $token = $query->first();
-        if(!$token || $token->isExpired()) {
-            return null;
+        if(!$token) {
+            throw new TokenException(BaseToken::getErrorMessage(BaseToken::APITOKEN_INVALID), BaseToken::APITOKEN_INVALID);
+        }
+
+        if($token->isExpired()) {
+            throw new TokenException(BaseToken::getErrorMessage(BaseToken::APITOKEN_EXPIRED), BaseToken::APITOKEN_EXPIRED);
         }
 
         return $token->user;

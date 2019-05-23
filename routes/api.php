@@ -28,7 +28,9 @@ Route::apiResource('map', 'MapController', ['only' => [
 //markpoint
 Route::post('/markpoint/subscription/add/{markpoint}', 'MarkPointController@addSubscription');
 Route::post('/markpoint/subscription/delete/{markpoint}', 'MarkPointController@deleteSubscription');
-Route::get('/markpoint/cards/{markpoint}', 'MarkPointController@getCards');
+Route::apiResource('markpoint', 'MarkPointController', ['only' => [
+    'index','show'
+]]);
 //card
 Route::post('/card/collection/add/{card}', 'CardController@addCollection');
 Route::post('/card/collection/delete/{card}', 'CardController@deleteCollection');

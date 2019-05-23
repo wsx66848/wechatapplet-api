@@ -15,6 +15,12 @@ class BaseToken extends Model
         'expired_in',
     ];
 
+    const APITOKEN_EXPIRED = 51;
+    const APITOKEN_INVALID = 52;
+    const REFRESHTOKEN_EXPIRED = 53;
+    const REFRESHTOKEN_INVALID = 54;
+    const OPENID_INVALID = 55;
+
     public function isExpired() {
         return $this->expired_in->lte(now());
     }
@@ -25,5 +31,9 @@ class BaseToken extends Model
 
     protected static function tokenGenerate() {
         return sha1(md5(uniqid(md5(microtime(true)),true)));
+    }
+
+    public static function getErrorMessage($error) {
+        return config('applet.errorcode.' . $error);
     }
 }

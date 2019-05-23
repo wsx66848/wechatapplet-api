@@ -70,7 +70,8 @@ map为地图信息,携带了它所包含的markpoint,markpoint中携带了它所
 
 地图上的标记点信息
 
-* get /api/markpoint/cards/{markpoint_id} 获取指定markpoint下的所有card
+* get /api/markpoint 获取所有markpoint以及包含的card
+* get /api/markpoint/{markpoint_id} 获取指定markpoint以及包含的card
 * post /api/markpoint/subscription/add/{markpoint_id} 订阅指定的markpoint
 * post /api/markpoint/subscription/delete/{markpoint_id} 取消订阅指定的markpoint
 

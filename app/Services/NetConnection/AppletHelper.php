@@ -12,6 +12,7 @@ class AppletHelper {
 
     public function code2Session($code) {
         //test use
+        /*
             return [
                 'success' => true,
                 'data' =>[
@@ -21,6 +22,7 @@ class AppletHelper {
                     'errorCode' => 0,
                 ]
             ];
+         */
 
         $http = $this->http;
         $http->setPath('/sns/jscode2session');
@@ -35,7 +37,7 @@ class AppletHelper {
             return [
                 'success' => false,
                 'msg' => $response['errmsg'] ?? 'session请求失败',
-                ];
+            ];
         }
         unset($response['errcode']);
         unset($response['errmsg']);

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Auth;
 
-class Article extends Model
+class Article extends BaseModel
 {
     //
     protected $table = 'article';
