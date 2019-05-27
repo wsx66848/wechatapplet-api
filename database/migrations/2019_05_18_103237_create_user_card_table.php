@@ -30,6 +30,6 @@ class CreateUserCardTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_card');
+        Schema::dropIfExists('card');
     }
 }
