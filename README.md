@@ -80,6 +80,7 @@ map为地图信息,携带了它所包含的markpoint,markpoint中携带了它所
 卡片信息
 * get /api/card 获取所有的card
 * get /api/card/{card_id} 获取指定的card
+* get /api/card/collection 获取用户所有收藏的卡片
 * post /api/card/collection/add/{card_id} 收藏指定的card
 * post /api/card/collection/delete/{card_id} 取消收藏指定的card
 
@@ -88,6 +89,7 @@ map为地图信息,携带了它所包含的markpoint,markpoint中携带了它所
 文章信息
 * get /api/article 获取所有的article
 * get /api/article/{article_id} 获取指定的article
+* get /api/article/collection 获取用户所有收藏的文章
 * post /api/article/collection/add/{article_id} 收藏指定的article
 * post /api/article/collection/delete/{article_id} 取消收藏指定的article
 

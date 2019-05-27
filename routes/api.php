@@ -32,6 +32,7 @@ Route::apiResource('markpoint', 'MarkPointController', ['only' => [
     'index','show'
 ]]);
 //card
+Route::get('/card/collection', 'CardController@showCollection');
 Route::post('/card/collection/add/{card}', 'CardController@addCollection');
 Route::post('/card/collection/delete/{card}', 'CardController@deleteCollection');
 Route::apiResource('card', 'CardController', ['only' => [
@@ -39,6 +40,7 @@ Route::apiResource('card', 'CardController', ['only' => [
 ]]);
 
 //article
+Route::get('/article/collection', 'ArticleController@showCollection');
 Route::post('/article/collection/add/{article}', 'ArticleController@addCollection');
 Route::post('/article/collection/delete/{article}', 'ArticleController@deleteCollection');
 Route::apiResource('article', 'ArticleController', ['only' => [

@@ -24,6 +24,7 @@ class Article extends BaseModel
     public function getUserCollection($user = null) {
         if($user) {
             $collections = $this->collections;
+            $this->addHidden('collections');
             foreach($collections as $collection) {
                 if($collection->user->getKey() == $user->getKey()) {
                     return $collection;

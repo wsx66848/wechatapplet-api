@@ -107,4 +107,9 @@ class CardController extends Controller
         }
         return $this->success();
     }
+
+    public function showCollection(Request $request) {
+        $user = $request->user();
+        return $this->success($user->collections()->with('collectionable')->where('collectionable_type','card')->get());
+    }
 }

@@ -32,6 +32,7 @@ class MarkPoint extends BaseModel
     public function getUserSubscription($user = null) {
         if($user) {
             $subscriptions = $this->subscriptions;
+            $this->addHidden('subscriptions');
             foreach($subscriptions as $subscription) {
                 if($subscription->user->getKey() == $user->getKey()) {
                     return $subscription;
