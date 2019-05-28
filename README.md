@@ -117,7 +117,7 @@ map为地图信息,携带了它所包含的markpoint,markpoint中携带了它所
 ### 7. feedback
 
 反馈信息
-* post /api/feedback 添加一条反馈信息 必选参数为
+* post /api/feedback 添加一条反馈信息 必选参数为content
 
 ### 8.user
 
