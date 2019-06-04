@@ -55,7 +55,7 @@ class AccessToken extends BaseToken
             $refresh = new RefreshToken;
             $refresh->refresh_token = static::tokenGenerate();
             $refresh->token_id = $token->api_token;
-            $refresh->expired_in = now()->addMinutes(config('applet.api_token_lifetime'));
+            $refresh->expired_in = now()->addMinutes(config('applet.refresh_token_lifetime'));
             if($refresh->save()) {
                 $res['refresh_token'] = $refresh;
             }
