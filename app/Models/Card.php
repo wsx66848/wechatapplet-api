@@ -26,7 +26,7 @@ class Card extends BaseModel
     }
 
     public function markpoint() {
-        return $this->belongsTo('App\Models\Card');
+        return $this->belongsTo('App\Models\MarkPoint');
     }
 
     public function collections() {
